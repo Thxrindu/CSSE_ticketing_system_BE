@@ -23,13 +23,16 @@ connection.once('open', () => {
     console.log("MongoDB database connection established successfully");
 })
 
-//Customer Routes
-const userRouter = require('./routes/user-routes/user.routes');
+//Passenger Routes
+const passengerRouter = require('./routes/user-routes/passenger.routes');
+const walletRouter = require('./routes/user-routes/wallet.routes');
 
-//Customer Routes
-app.use('/user', userRouter);
 // Bus Routes
 const busRoutes = require("./routes/busRoutes/busRoute");
+
+//Passenger Routes
+app.use('/passenger', passengerRouter);
+app.use('/wallet', walletRouter);
 
 //Bus Routes
 app.use('/bus', busRoutes);

@@ -1,5 +1,5 @@
 const router = require('express').Router();
-let User = require('../../models/user-models/user');
+let User = require('../../models/user-models/passenger');
 
 //get all users
 router.route('/').get((req, res) => {
@@ -13,20 +13,20 @@ router.route('/add').post((req, res) => {
 
     const name = req.body.name;
     const idNumber = req.body.idNumber;
-    const accountBalance = req.body.accountBalance;
-    const dayPassStatus = req.body.dayPassStatus;
-    const fineAmount = req.body.fineAmount;
+    const contactNo = req.body.contactNo;
+    const email = req.body.email;
+    const password = req.body.password;
 
     const newUser = new User({
         name,
         idNumber,
-        accountBalance,
-        dayPassStatus,
-        fineAmount
+        contactNo,
+        email,
+        password
     });
 
     newUser.save()
-        .then(() => res.json('User added!'))
+        .then(() => res.json('Passenger added!'))
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
@@ -52,9 +52,9 @@ router.route('/updateuser/:id').post((req, res) => {
 
             user.name = req.body.name;
             user.idNumber = req.body.idNumber;
-            user.accountBalance = req.body.accountBalance;
-            user.dayPassStatus = req.body.dayPassStatus;
-            user.fineAmount = req.body.fineAmount;
+            user.contactNo = req.body.contactNo;
+            user.email = req.body.email;
+            user.password = req.body.password;
 
             user.save()
                 .then(() => res.json('User updated!'))
