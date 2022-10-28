@@ -23,22 +23,22 @@ connection.once('open', () => {
     console.log("MongoDB database connection established successfully");
 })
 
-<<<<<<< HEAD
-//Customer Routes
-const userRouter = require('./routes/user-routes/user.routes');
+//Passenger Routes
+const passengerRouter = require('./routes/user-routes/passenger.routes');
+const walletRouter = require('./routes/user-routes/wallet.routes');
 
-//Customer Routes
-app.use('/user', userRouter);
-=======
 // Bus Routes
 const busRoutes = require("./routes/busRoutes/busRoute");
+
+//Passenger Routes
+app.use('/passenger', passengerRouter);
+app.use('/wallet', walletRouter);
 
 //Bus Routes
 app.use('/bus', busRoutes);
 
 
 
->>>>>>> 3f2ed0fd9d274c186f575251625878e74cfc6b5c
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);
