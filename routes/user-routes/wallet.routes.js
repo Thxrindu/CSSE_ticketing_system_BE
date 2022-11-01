@@ -63,4 +63,23 @@ router.route('/updatewallet/:id').post((req, res) => {
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
+//update amount
+router.route('/updateamount/:id').post((req, res) => {
+    Wallet.findById(req.params.id)
+        .then(user => {
+
+            const a = parseInt(user.accountBalance);
+            const b = parseInt(req.body.accountBalance);
+
+            let sum = a + b;
+            user.accountBalance = sum;
+
+            user.save()
+                .then(() => res.json('Amount updated!'))
+                .catch(err => res.status(400).json('Error: ' + err));
+        })
+        .catch(err => res.status(400).json('Error: ' + err));
+});
+
+
 module.exports = router;
