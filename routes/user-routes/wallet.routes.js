@@ -16,13 +16,15 @@ router.route('/add').post((req, res) => {
     const accountBalance = req.body.accountBalance;
     const loanAmount = req.body.loanAmount;
     const loanStatus = req.body.loanStatus;
+    const dayPass = req.body.dayPass;
 
     const newWallet = new Wallet({
         passengerId,
         initialCredit,
         accountBalance,
         loanAmount,
-        loanStatus
+        loanStatus,
+        dayPass
     });
 
     newWallet.save()
@@ -55,12 +57,46 @@ router.route('/updatewallet/:id').post((req, res) => {
             user.accountBalance = req.body.accountBalance;
             user.loanAmount = req.body.loanAmount;
             user.loanStatus = req.body.loanStatus;
+            user.dayPass = req.body.dayPass;
 
             user.save()
                 .then(() => res.json('Wallet updated!'))
                 .catch(err => res.status(400).json('Error: ' + err));
         })
         .catch(err => res.status(400).json('Error: ' + err));
+});
+
+//find passenger
+router.route('/findwallet/:id').post((req, res) => {
+    Wallet.find({ passengerId: req.params.id})
+    .then(wallet => res.json(wallet))
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+
+//update balance
+router.route('/updatebalance').post((req, res) => {
+
+    Wallet.updateOne( { passengerId : req.body.id },{ $inc: { accountBalance: req.body.rechargeAmount}})
+    .then(wallet => res.json(wallet))
+    .catch(err => res.status(400).json('Error: ' + err));
+
+});
+
+//update balance
+router.route('/buydaypass').post((req, res) => {
+
+    Wallet.updateOne( { passengerId : req.body.id },{ $inc: { accountBalance: req.body.rechargeAmount}})
+    .then(wallet => res.json(wallet))
+    .catch(err => res.status(400).json('Error: ' + err));
+
+});
+
+//update
+router.route('/updatedaypass').post((req, res) => {
+    
+    Wallet.updateOne( { passengerId : req.body.id },{ dayPass: req.body.dayPass, $inc: {accountBalance: -2500}})
+    .then(wallet => res.json(wallet))
+    .catch(err => res.status(400).json('Error: ' + err));
 });
 
 module.exports = router;
