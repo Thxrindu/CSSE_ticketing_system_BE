@@ -16,13 +16,15 @@ router.route('/add').post((req, res) => {
     const contactNo = req.body.contactNo;
     const email = req.body.email;
     const password = req.body.password;
+    const type = req.body.type;
 
     const newUser = new User({
         name,
         idNumber,
         contactNo,
         email,
-        password
+        password,
+        type
     });
 
     newUser.save()
