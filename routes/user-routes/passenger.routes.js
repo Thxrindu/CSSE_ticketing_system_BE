@@ -7,7 +7,6 @@ router.route('/').get((req, res) => {
         .then(items => res.json(items))
         .catch(err => res.status(400).json('Error: ' + err));
 });
-
 //insert item
 router.route('/add').post((req, res) => {
 
