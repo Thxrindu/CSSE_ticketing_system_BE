@@ -8,6 +8,7 @@ const walletScheme = new Schema({
     accountBalance: { type: Number, required: true },
     loanAmount: { type: String, required: true },
     loanStatus: { type: String, required: true },
+    dayPass: { type: Number, required: true },
 }, {
     timestamps: true,
 });

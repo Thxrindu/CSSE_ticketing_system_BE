@@ -26,6 +26,8 @@ connection.once('open', () => {
 //Passenger Routes
 const passengerRouter = require('./routes/user-routes/passenger.routes');
 const walletRouter = require('./routes/user-routes/wallet.routes');
+const recharge = require('./routes/user-routes/recharge.routes');
+const loan = require('./routes/user-routes/loan.routes');
 
 // Bus Routes
 const busRoutes = require("./routes/busRoutes/busRoute");
@@ -33,6 +35,8 @@ const busRoutes = require("./routes/busRoutes/busRoute");
 //Passenger Routes
 app.use('/passenger', passengerRouter);
 app.use('/wallet', walletRouter);
+app.use('/recharge', recharge);
+app.use('/loan', loan);
 
 //Bus Routes
 app.use('/bus', busRoutes);
